@@ -9,6 +9,8 @@ import play.api.data.Forms._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.{Action, Controller}
 
+import scala.concurrent.Future
+
 
 /**
 	* Created by admin on 2017/02/19.
@@ -27,22 +29,21 @@ class AuthController @Inject()(userDao: UserDao) extends Controller{
 	}
 
 	def auth = Action.async{ implicit request =>
-		val requestForm = form.bindFromRequest
-		if(requestForm.hasErrors) {
-			 Ok(views.html.login("ログイン認証エラー")) // TODO 何故かここでかえらない
-		}
-
-		val userForm = requestForm.get
-
-		for(userRow <- userDao.findById(userForm.userId)) yield
-		userRow match {
-			case Some(user) =>
-				if(user.password == userForm.password) {
-					Ok(views.html.user(user))
-				} else {
-					Ok(views.html.login("ログイン認証エラー"))
+		form.bindFromRequest.fold(
+			_ => Future.successful(Ok(views.html.login("バインドエラー"))),
+			requestForm => {
+				for(userRow <- userDao.findById(requestForm.userId)) yield
+				userRow match {
+					case Some(user) =>
+						if(user.password == requestForm.password) {
+							// TODO session関係の処理を入れたい。
+							Ok(views.html.user(user))
+						} else {
+							Ok(views.html.login("パスワード不一致"))
+						}
+					case None => Ok(views.html.login("ユーザーが存在しない"))
 				}
-			case None => Ok(views.html.login("ログイン認証エラー"))
-		}
+			}
+		)
 	}
 }
