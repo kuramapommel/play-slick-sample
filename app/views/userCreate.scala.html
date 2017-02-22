@@ -1,0 +1,48 @@
+@(message: String)
+
+@main("sign up"){
+<form id="signupForm" name="signupForm" method="post" action="/signup">
+	<table align="center">
+		<tbody>
+		<tr>
+			<td colspan="1" rowspan="1" width="150">
+				<label>ユーザーID</label>
+			</td>
+			<td colspan="1" rowspan="1" width="300">
+				<input type="text" name="userId">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1" width="150">
+				<label>パスワード</label>
+			</td>
+			<td colspan="1" rowspan="1" width="300">
+				<input type="password" name="password">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1" width="150">
+				<label>パスワード確認用</label>
+			</td>
+			<td colspan="1" rowspan="1" width="300">
+				<input type="password" name="passwordConfirm">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="1" rowspan="1" width="150">
+				<label>ユーザー名</label>
+			</td>
+			<td colspan="1" rowspan="1" width="300">
+				<input type="text" name="userName">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" rowspan="1" align="center">
+				<input type="submit" name="createUserbtn" value="ユーザー登録">
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<div align="center">@message</div>
+</form>
+}
