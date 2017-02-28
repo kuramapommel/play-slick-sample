@@ -33,16 +33,16 @@ class AuthController @Inject()(userDao: UserDao) extends Controller{
 			_ => Future.successful(Ok(views.html.login("バインドエラー"))),
 			requestForm => {
 				for(userRow <- userDao.findById(requestForm.userId)) yield
-					userRow match {
-						case Some(user) =>
-							if(user.password == requestForm.password) {
-								// TODO session関係の処理を入れたい。
-								Ok(views.html.user(user))
-							} else {
-								Ok(views.html.login("パスワード不一致"))
-							}
-						case None => Ok(views.html.login("ユーザーが存在しない"))
-					}
+				userRow match {
+					case Some(user) =>
+						if(user.password == requestForm.password) {
+							// TODO session関係の処理を入れたい。
+							Ok(views.html.user(user))
+						} else {
+							Ok(views.html.login("パスワード不一致"))
+						}
+					case None => Ok(views.html.login("ユーザーが存在しない"))
+				}
 			}
 		)
 	}
