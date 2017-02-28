@@ -1,36 +1,36 @@
-@(message: String) 
- 
-@main("login"){ 
-  <form id="loginForm" name="loginForm" method="post" action="/auth"> 
-    <table align="center"> 
-      <tbody> 
-        <tr> 
-          <td colspan="1" rowspan="1" width="120"> 
-            <label>ログインID</label> 
-          </td> 
-          <td colspan="1" rowspan="1" width="300"> 
-            <input type="text" name="userId"> 
-          </td> 
-        </tr> 
-        <tr> 
-          <td colspan="1" rowspan="1" width="120">  
-            <label>パスワード</label>  
-          </td>  
-          <td colspan="1" rowspan="1" width="300">  
-            <input type="password" name="password"> 
-          </td> 
-        </tr>
-        <tr> 
-          <td colspan="2" rowspan="1" align="center"> 
-            <input type="submit" name="loginbtn" value="ログイン"> 
-          </td> 
-        </tr> 
-      </tbody> 
-    </table> 
-    <div align="center">@message</div> 
-    <br> 
-    <div align="center"> 
-      <a href="/signup">ユーザー登録</a> 
-    </div> 
-  </form> 
+@(message: String)
+
+@main("login"){
+<form id="loginForm" name="loginForm" method="post" action="/auth">
+  <table align="center">
+    <tbody>
+    <tr>
+      <td colspan="1" rowspan="1" width="120">
+        <label>ログインID</label>
+      </td>
+      <td colspan="1" rowspan="1" width="300">
+        <input type="text" name="userId">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="1" rowspan="1" width="120">
+        <label>パスワード</label>
+      </td>
+      <td colspan="1" rowspan="1" width="300">
+        <input type="password" name="password">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" rowspan="1" align="center">
+        <input type="submit" name="loginbtn" value="ログイン">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div align="center">@message</div>
+  <br>
+  <div align="center">
+    <a href="/signup">ユーザー登録</a>
+  </div>
+</form>
 }
