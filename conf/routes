@@ -2,3 +2,5 @@ GET     /                   controllers.AuthController.index
 POST    /auth               controllers.AuthController.auth
 GET     /signup             controllers.UserCreateController.transitionSignUp
 POST    /signup             controllers.UserCreateController.registUser
+
+GET     /assets/*file           controllers.Assets.at(path="/public", file)
